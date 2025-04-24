@@ -37,6 +37,7 @@ relationships with emotional information derived from the textual content.
 
 ![](assets/modelname.png)
 
+You can find full python code [here](sentiment_annotator.py) 
 
 
 * **Percentage computation**: Once all the messages are labeled, the second step
