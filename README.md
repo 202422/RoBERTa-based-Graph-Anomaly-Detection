@@ -24,8 +24,26 @@ removing 50% of normal and aggressive messages).
 
 ## RGAD Implementation
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We developed a behavioral anomaly detection pipeline based on sentiment analysis of messages exchanged within a Neo4j graph database. Each message in the database is labeled using the pre-trained Twitter-RoBERTa-base-sentiment model (Cardiff NLP), which classifies content into three categories: positive, neutral, or negative, along with an associated confidence score.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We developed a behavioral anomaly detection pipeline based on sentiment analysis of messages exchanged within a Neo4j graph database. The pipeline consists of two main stages:
+
+* **Labeling**: The first step of the pipeline involves performing sentiment analysis on
+messages exchanged between users in a Neo4j graph database. Each message is
+processed using the pre-trained Twitter-RoBERTa-base-sentiment model developed
+by Cardiff NLP. This model, which is specialized in analyzing social media text,
+assigns a sentiment label to each message from among three categories: positive,
+neutral, or negative. In addition to the label, the model provides a confidence score
+that reflects how certain it is about its prediction. This step enriches the graph
+relationships with emotional information derived from the textual content.
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After labeling, we calculate for each user the percentage of negative messages with a confidence score greater than 70%, relative to the total number of messages they have sent. This metric serves as a criterion for identifying potentially abnormal or toxic behavior within the network. A high proportion of strongly negative messages may indicate
-malicious behavior, potential harassment, or other anomalies that warrant further investigation.
+
+
+
+* **Percentage computation**: Once all the messages are labeled, the second step
+consists of analyzing user behavior by computing, for each user, the percentage of
+negative messages with a confidence score higher than 70%, relative to the total
+number of messages they have sent. This confidence threshold is used to focus only
+on messages that the model considers strongly negative. The resulting percentage
+serves as an indicator for identifying potentially toxic or abnormal behavior. A
+user who sends a high proportion of strongly negative messages may be flagged for
+further analysis to detect possible malicious intent or harassment situations.
