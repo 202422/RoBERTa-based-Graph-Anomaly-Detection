@@ -35,7 +35,7 @@ neutral, or negative. In addition to the label, the model provides a confidence 
 that reflects how certain it is about its prediction. This step enriches the graph
 relationships with emotional information derived from the textual content.
 
-
+![](assets/modelname.png)
 
 
 
@@ -47,3 +47,5 @@ on messages that the model considers strongly negative. The resulting percentage
 serves as an indicator for identifying potentially toxic or abnormal behavior. A
 user who sends a high proportion of strongly negative messages may be flagged for
 further analysis to detect possible malicious intent or harassment situations.
+
+![](assets/request.png)
